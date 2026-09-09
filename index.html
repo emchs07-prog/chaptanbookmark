@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>チャプたんブックマーク - サポート</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --card: #f9fafb;
+    --accent: #3b82f6;
+    --navy: #1f293a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111827;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --line: #374151;
+      --card: #1f2937;
+      --navy: #0f172a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    color: var(--fg);
+    background: var(--bg);
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 20px 48px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.9rem; letter-spacing: .02em; }
+  header p { margin: 0; opacity: .85; }
+  h2 {
+    margin: 48px 0 16px;
+    font-size: 1.3rem;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  h3 { margin: 28px 0 8px; font-size: 1.05rem; }
+  .lead { font-size: 1.05rem; }
+  ul { padding-left: 1.3em; }
+  li { margin: 6px 0; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .tree {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .92rem;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+    margin: 0;
+  }
+  .faq dt { font-weight: 600; margin-top: 22px; }
+  .faq dd { margin: 6px 0 0; color: var(--fg); }
+  a { color: var(--accent); }
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: 56px;
+    padding-top: 24px;
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  .note { color: var(--muted); font-size: .92rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>チャプたんブックマーク</h1>
+  <p>動画を、フォルダの中のフォルダで整理する</p>
+</header>
+
+<div class="wrap">
+
+  <p class="lead">
+    気になった動画を保存して、フォルダで整理するアプリです。
+    フォルダの中にフォルダを作れるので、深く分けて整理できます。
+    動画そのものだけでなく、<strong>動画の中の場面にも印を付けられます。</strong>
+  </p>
+
+  <div class="card">
+    <p class="tree">プログラミング
+├ Python
+│   ├ 入門
+│   └ 実践
+└ JavaScript
+    └ 入門</p>
+  </div>
+
+  <h2>できること</h2>
+
+  <h3>フォルダの中にフォルダを作れる</h3>
+  <p>
+    段数に決まりはありません。団体名でまとめ、その中を大会ごとに分ける、といった整理ができます。
+    フォルダは階層ごとに色が変わるので、閉じていても入れ子だと分かります。
+  </p>
+
+  <h3>動画の中の場面に印を付けられる</h3>
+  <p>
+    再生中に旗のボタンを押すと、その場面に名前を付けて残せます。
+    目次から選べば、その時間まで一度に飛べます。
+    「ここから本題」といった覚え書きを、動画の中に残しておけます。
+  </p>
+
+  <h3>いろいろなサイトの動画をまとめられる</h3>
+  <ul>
+    <li><strong>YouTube・Vimeo</strong> — アプリの中で再生でき、場面の印も付けられます</li>
+    <li><strong>そのほかのサイト</strong> — 題名・サイト名・見出し画像が自動で入ります。再生はブラウザで開きます</li>
+  </ul>
+
+  <h3>Mac・iPhone・iPad で同じ棚が開く</h3>
+  <p>
+    ご自身の iCloud を通して、3つの機器で同じ内容になります。
+    一度お買い上げいただければ、すべての機器でお使いいただけます。
+  </p>
+
+  <h3>そのほか</h3>
+  <ul>
+    <li>タグで横断的に絞り込む</li>
+    <li>続きから再生する（前に見ていた位置を覚えます）</li>
+    <li>見終わった印を付ける</li>
+    <li>題名・チャンネル名・タグで探す（どのフォルダにあるかも表示します）</li>
+    <li>再生リストをフォルダとして丸ごと取り込む</li>
+    <li>フォルダの中身をファイルに書き出して、同じアプリを使っている方に渡す</li>
+    <li>消したものは30日間ゴミ箱に残り、戻せます</li>
+  </ul>
+
+  <h2>よくあるご質問</h2>
+
+  <dl class="faq">
+    <dt>動画そのものは保存されますか？</dt>
+    <dd>
+      いいえ。保存するのは動画への「リンク」だけです。端末の容量をほとんど使いません。
+      アプリの中で再生するときは、YouTube と Vimeo が提供している公式の埋め込みプレイヤーを
+      そのまま表示しています。広告も、そのサービスが出すとおりに表示されます。
+    </dd>
+
+    <dt>動画をダウンロードできますか？</dt>
+    <dd>
+      できません。動画の提供元の規約を守るため、ダウンロード機能は設けていません。
+    </dd>
+
+    <dt>iPhone で見つけた動画を、その場で保存できますか？</dt>
+    <dd>
+      できます。動画の共有ボタンから「チャプたんブックマーク」を選んでください。
+      一覧に出てこないときは、アプリを一度開いてからお試しください。
+      それでも出ないときは、共有の一覧を右端までスクロールし、「その他」から表示を有効にしてください。
+    </dd>
+
+    <dt>Mac ではどうやって追加しますか？</dt>
+    <dd>
+      ブラウザのアドレスバーからリンクをつまんで、画面左下の枠に落としてください。
+      URL をコピーして ⌘V でも追加できます。
+      あらかじめフォルダを選んでおくと、その中に入ります。
+    </dd>
+
+    <dt>他の機器に反映されません</dt>
+    <dd>
+      iCloud を通して同期しています。反映まで数分かかることがあります。
+      画面の左下に、最後に同期できた日時が出ますのでご確認ください。
+      初めてお使いになるときは、Apple 側の準備に時間がかかり、しばらく同期されないことがあります。
+    </dd>
+
+    <dt>動画が再生できなくなりました</dt>
+    <dd>
+      提供元で削除されたか、非公開に変更された可能性があります。
+      設定メニューの「見られなくなった動画を調べる」で、まとめて確認できます。
+    </dd>
+
+    <dt>保存した内容の控えは取れますか？</dt>
+    <dd>
+      取れます。設定メニューの「すべてを控える（自分用）」でファイルに書き出せます。
+      「控えから戻す」で元に戻せます。
+    </dd>
+
+    <dt>整理した内容を人に渡せますか？</dt>
+    <dd>
+      渡せます。フォルダを右クリック（iPhone・iPad では長押し）して「リストを保存」を選ぶと、
+      その中身をフォルダの形のままファイルに書き出せます。場面の印も一緒に渡ります。
+      <br>
+      <span class="note">
+        見終わった印や再生位置は書き出されません。ご自身の記録が相手に渡ることはありません。
+      </span>
+    </dd>
+  </dl>
+
+  <h2>お問い合わせ</h2>
+  <p>
+    ご不明な点、ご要望、不具合のご報告は、こちらへお願いいたします。
+  </p>
+  <div class="card">
+    <p style="margin:0">
+      <a href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a>
+    </p>
+  </div>
+  <p class="note">
+    不具合のご報告の際は、お使いの機器（Mac / iPhone / iPad）と、
+    どの操作をされたときに起きたかをお書き添えいただけると助かります。
+  </p>
+
+  <footer>
+    <p>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </p>
+    <p>&copy; 2026 Hideki Sato</p>
+    <p class="note">
+      YouTube および Vimeo は、それぞれの権利者の商標です。本アプリは、
+      これらのサービスが提供する公式の埋め込みプレイヤーを表示しています。
+      本アプリは、これらのサービスの提供元とは関係がありません。
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
