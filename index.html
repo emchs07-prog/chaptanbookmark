@@ -11,77 +11,126 @@
 <!-- 検索向けの設定（ここまで） -->
 <style>
   :root {
-    --bg: #ffffff;
-    --fg: #1f2937;
-    --muted: #6b7280;
-    --line: #e5e7eb;
-    --card: #f9fafb;
-    --accent: #3b82f6;
-    --navy: #1f293a;
+    color-scheme: light dark;
+    --bg:#ffffff; --bg2:#f5f7fb; --card:#ffffff; --text:#14171f; --mute:#5b6475; --line:#e3e7ef;
+    --accent:#d6453d; --accent2:#3f6fd6; --code:#0b0d12; --codetext:#e8ecf3; --shadow:0 10px 30px rgba(20,30,60,.08);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #111827;
-      --fg: #e5e7eb;
-      --muted: #9ca3af;
-      --line: #374151;
-      --card: #1f2937;
-      --navy: #0f172a;
-    }
+    :root { --bg:#0b0d12; --bg2:#11151d; --card:#151a23; --text:#e9edf5; --mute:#9aa4b6; --line:#232a36;
+            --accent:#ff7a72; --accent2:#7aa2ff; --shadow:0 10px 30px rgba(0,0,0,.35); }
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-    line-height: 1.8;
-    color: var(--fg);
-    background: var(--bg);
-  }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
-  header {
-    background: var(--navy);
-    color: #fff;
-    padding: 56px 20px 48px;
-    text-align: center;
-  }
-  header h1 { margin: 0 0 8px; font-size: 1.9rem; letter-spacing: .02em; }
-  header p { margin: 0; opacity: .85; }
-  h2 {
-    margin: 48px 0 16px;
-    font-size: 1.3rem;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--accent);
-  }
-  h3 { margin: 28px 0 8px; font-size: 1.05rem; }
-  .lead { font-size: 1.05rem; }
-  ul { padding-left: 1.3em; }
-  li { margin: 6px 0; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin: 18px 0;
-  }
-  .tree {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: .92rem;
-    line-height: 1.7;
-    white-space: pre;
-    overflow-x: auto;
-    margin: 0;
-  }
-  .faq dt { font-weight: 600; margin-top: 22px; }
-  .faq dd { margin: 6px 0 0; color: var(--fg); }
-  a { color: var(--accent); }
-  footer {
-    border-top: 1px solid var(--line);
-    margin-top: 56px;
-    padding-top: 24px;
-    color: var(--muted);
-    font-size: .9rem;
-  }
-  .note { color: var(--muted); font-size: .92rem; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:72px; }
+  body { margin:0; background:var(--bg); color:var(--text); line-height:1.8;
+         font-family:-apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+         -webkit-font-smoothing:antialiased; }
+  a { color:var(--accent); }
+  img { max-width:100%; height:auto; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 24px; }
+  /* 上の帯 */
+  .top { position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px);
+         background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--line); }
+  .top .wrap { display:flex; align-items:center; gap:16px; height:56px; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--text); white-space:nowrap; }
+  .brand img { width:28px; height:28px; border-radius:7px; }
+  .top nav { margin-left:auto; display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; }
+  .top nav a { color:var(--mute); text-decoration:none; font-size:.88rem; padding:6px 10px; border-radius:8px; white-space:nowrap; }
+  .top nav a:hover { color:var(--text); background:var(--bg2); }
+  /* 先頭 */
+  .hero { position:relative; overflow:hidden; text-align:center; padding:72px 0 40px; }
+  .hero::before { content:""; position:absolute; inset:-30% -10% auto; height:120%; z-index:-1; filter:blur(20px);
+    background:radial-gradient(40% 45% at 30% 35%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+               radial-gradient(35% 40% at 72% 30%, color-mix(in srgb, var(--accent2) 18%, transparent), transparent 70%); }
+  .hero .icon { width:112px; height:112px; border-radius:25px; box-shadow:var(--shadow); }
+  .hero h1 { font-size:clamp(2.4rem, 6vw, 3.6rem); line-height:1.15; margin:20px 0 4px; letter-spacing:-.01em; font-weight:800; }
+  .hero .yomi { color:var(--mute); font-size:.9rem; margin:0; }
+  .hero .sub { font-size:clamp(1.15rem, 2.6vw, 1.5rem); font-weight:700; margin:14px 0 10px;
+    background:linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero .lead { max-width:36em; margin:0 auto; color:var(--mute); }
+  .chips { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0 0; padding:0; list-style:none; }
+  .chips li { font-size:.82rem; font-weight:600; color:var(--mute); border:1px solid var(--line); background:var(--card); border-radius:999px; padding:3px 12px; }
+  .btns { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:28px 0 0; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font-weight:700; text-decoration:none; border-radius:12px; padding:12px 22px; }
+  .btn.primary { background:var(--text); color:var(--bg); }
+  .btn.ghost { border:1px solid var(--line); color:var(--text); background:var(--card); }
+  .btn:hover { opacity:.88; }
+  .shot-hero { margin:48px auto 0; max-width:960px; }
+  .shot-hero img, .gallery img { display:block; width:100%; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); }
+  .note { max-width:44em; margin:28px auto 0; font-size:.88rem; color:var(--mute); text-align:center; }
+  /* 節 */
+  section.block { padding:64px 0; }
+  section.block.alt { background:var(--bg2); }
+  .eyebrow { display:block; text-align:center; font-size:.78rem; font-weight:700; letter-spacing:.12em; color:var(--accent); margin:0 0 6px; }
+  h2 { text-align:center; font-size:clamp(1.5rem, 3.4vw, 2rem); line-height:1.35; margin:0 0 12px; }
+  .intro { text-align:center; color:var(--mute); max-width:38em; margin:0 auto 36px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 22px 18px; }
+  .card .ic { display:inline-grid; place-items:center; width:40px; height:40px; border-radius:11px; font-size:1.2rem;
+              background:color-mix(in srgb, var(--accent) 14%, transparent); }
+  .card h3 { font-size:1.06rem; margin:12px 0 6px; line-height:1.5; }
+  .card p { margin:0; color:var(--mute); font-size:.94rem; }
+  .card .tag { display:inline-block; font-size:.72rem; font-weight:700; color:var(--accent2); margin-left:6px; vertical-align:2px; }
+  .codes { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:28px 0 0; padding:0; list-style:none; }
+  .codes li { font-family:Menlo, ui-monospace, monospace; font-size:.85rem; background:var(--code); color:var(--codetext); border-radius:8px; padding:4px 12px; }
+  /* 画面 */
+  .gallery { display:grid; grid-auto-flow:column; grid-auto-columns:min(82%, 720px); gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 16px; }
+  .gallery figure { margin:0; scroll-snap-align:center; }
+  .gallery.phone { grid-auto-columns:min(56%, 240px); }
+  .gallery figcaption { font-size:.88rem; color:var(--mute); margin-top:10px; text-align:center; }
+  .gallery-label { font-weight:700; margin:32px 0 12px; }
+  /* 使い方 */
+  .how { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px; }
+  .how .card h3 { margin-top:0; font-size:1.15rem; }
+  .how ol { margin:0; padding-left:1.3em; }
+  .how li { margin:0 0 8px; }
+  kbd { font-family:-apple-system, sans-serif; font-size:.82em; border:1px solid var(--line); border-bottom-width:2px; border-radius:6px; padding:0 6px; background:var(--bg2); }
+  .md-list { max-width:760px; margin:0 auto; padding-left:1.3em; }
+  .md-list li { margin:0 0 10px; }
+  .for { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; max-width:860px; margin:0 auto; padding:0; list-style:none; }
+  .for li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-weight:600; }
+  .for li::before { content:"✓"; color:var(--accent); margin-right:8px; }
+  /* よくある質問 */
+  .faq { max-width:780px; margin:0 auto; }
+  .faq details { background:var(--card); border:1px solid var(--line); border-radius:14px; margin:0 0 10px; }
+  .faq summary { cursor:pointer; list-style:none; padding:16px 48px 16px 20px; font-weight:700; position:relative; }
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq summary::after { content:"+"; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:1.3rem; color:var(--mute); }
+  .faq details[open] summary::after { content:"−"; }
+  .faq .a { padding:0 20px 16px; color:var(--mute); }
+  .faq .a p { margin:0 0 8px; }
+  /* お問い合わせ */
+  .contact { max-width:640px; margin:0 auto; text-align:center; }
+  .contact .card { padding:28px; }
+  .contact p { margin:0 0 10px; }
+  .other-apps { max-width:780px; margin:0 auto !important; padding:56px 24px 0; }
+  .other-apps h2 { margin-bottom:4px; }
+  .other-apps > p { text-align:center; }
+  .other-apps ul { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:4px 20px; }
+  .other-apps li { line-height:1.5; }
+  footer { text-align:center; color:var(--mute); font-size:.85rem; padding:40px 24px 56px; margin-top:56px; border-top:1px solid var(--line); }
+  @media (max-width:640px) { .top nav { display:none; } .hero { padding-top:48px; } section.block { padding:48px 0; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  .en { padding-top:24px; }
+  .en-sep { border:0; border-top:1px solid var(--line); margin:64px 0 0; }
+  .en .how { grid-template-columns:1fr; max-width:780px; margin:0 auto; }
+  .keys { display:grid; grid-template-columns:repeat(auto-fill, minmax(420px, 1fr)); gap:16px; align-items:start; }
+  .keys h3 { margin:0 0 10px; font-size:1.05rem; }
+  .keys table { width:100%; border-collapse:collapse; font-size:.92rem; }
+  .keys th { text-align:left; white-space:nowrap; padding:6px 14px 6px 0; vertical-align:top; font-weight:400; }
+  .keys td { padding:6px 0; color:var(--mute); border-bottom:1px solid var(--line); }
+  .keys tr:last-child td { border-bottom:0; }
+  .keys-note { text-align:center; color:var(--mute); font-size:.9rem; margin:20px auto 0; max-width:44em; }
+  @media (max-width:640px) { .keys { grid-template-columns:1fr; } }
+  .notecard { display:block; text-align:left; text-decoration:none; color:var(--text); transition:transform .15s ease; }
+  .notecard:hover { transform:translateY(-2px); }
+  .nc-site { display:inline-block; font-size:.75rem; font-weight:700; color:var(--bg); background:var(--text); border-radius:6px; padding:1px 8px; }
+  .nc-title { display:block; font-weight:700; font-size:1.1rem; line-height:1.5; margin:10px 0 6px; }
+  .nc-lead { display:block; color:var(--mute); font-size:.92rem; }
+  .nc-go { display:block; color:var(--accent); font-weight:700; margin-top:10px; }
+  .tree { max-width:420px; margin:28px auto 0; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 22px; font-family:Menlo, ui-monospace, monospace; font-size:.9rem; line-height:1.7; white-space:pre; overflow-x:auto; }
+  .uses { max-width:760px; margin:20px auto 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:10px; padding:0; list-style:none; }
+  .uses li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-size:.94rem; }
+  .uses li::before { content:"📁"; margin-right:8px; }
 </style>
 <!-- リンクを貼ったときに出る紹介カード（OGP） -->
 <meta property="og:type" content="website">
@@ -94,150 +143,96 @@
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#"><img src="img/icon.png" alt="" width="28" height="28">チャプたんブックマーク</a>
+  <nav aria-label="ページ内の移動"><a href="#features">特長</a><a href="#screens">画面</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a></nav>
+</div></header>
 
-<header>
+<main>
+<section class="hero"><div class="wrap">
+  <img class="icon" src="img/icon.png" alt="チャプたんブックマークのアイコン" width="112" height="112">
   <h1>チャプたんブックマーク</h1>
-  <p>動画を、フォルダの中のフォルダで整理する</p>
-</header>
+  <p class="sub">動画を、フォルダの中のフォルダで整理する。</p>
+  <p class="lead">気になった動画を保存して、フォルダで整理するアプリです。フォルダの中にフォルダを作れるので、深く分けて整理できます。動画そのものだけでなく、動画の中の場面にも印を付けられます。</p>
+  <ul class="chips"><li>Mac</li><li>iPhone</li><li>iPad</li><li>一度の購入で全部の端末に</li><li>iCloud で同期</li></ul>
+  <div class="btns">
+    <a class="btn primary" href="https://apps.apple.com/jp/app/id6810448977">App Store で見る</a>
+    <a class="btn ghost" href="#features">できることを見る</a>
+  </div>
+  <figure class="shot-hero" style="margin-left:auto;margin-right:auto;"><img src="img/mac-01.jpg" alt="Mac のチャプたんブックマーク。左にフォルダの入れ子、右で動画を再生" width="1600" height="1000"></figure>
+</div></section>
 
-<div class="wrap">
-
-  <p class="og-card"><img src="og.png" alt="チャプたんブックマークの紹介" width="1200" height="630" style="display:block;width:100%;max-width:720px;height:auto;border-radius:12px;margin:12px 0 24px;"></p>
-
-  <p class="lead">
-    気になった動画を保存して、フォルダで整理するアプリです。
-    フォルダの中にフォルダを作れるので、深く分けて整理できます。
-    動画そのものだけでなく、<strong>動画の中の場面にも印を付けられます。</strong>
-  </p>
-
-  <div class="card">
-    <p class="tree">プログラミング
+<section class="block alt" id="features"><div class="wrap">
+  <span class="eyebrow">FEATURES</span>
+  <h2>フォルダの中に、フォルダを</h2>
+  <p class="intro">段数に決まりはありません。大きなくくりでまとめて、その中をさらに細かく分けられます。フォルダは階層ごとに色が変わるので、閉じていても入れ子だと分かります。</p>
+  <div class="tree">プログラミング
 ├ Python
 │   ├ 入門
 │   └ 実践
 └ JavaScript
-    └ 入門</p>
-  </div>
-
-  <h2>できること</h2>
-
-  <h3>フォルダの中にフォルダを作れる</h3>
-  <p>
-    段数に決まりはありません。大きなくくりでまとめて、その中をさらに細かく分けられます。
-  </p>
-  <ul>
+    └ 入門</div>
+  <ul class="uses">
     <li>学びたいことを分野で分け、その中を科目ごと、回ごとに</li>
     <li>作りたい料理を種類で分け、その中を材料ごとに</li>
     <li>好きなものを人やチームで分け、その中を年ごとに</li>
     <li>仕事の資料を案件で分け、その中を工程ごとに</li>
   </ul>
-  <p>
-    フォルダは階層ごとに色が変わるので、閉じていても入れ子だと分かります。
-  </p>
-
-  <h3>動画の中の場面に印を付けられる</h3>
-  <p>
-    再生中に旗のボタンを押すと、その場面に名前を付けて残せます。
-    目次から選べば、その時間まで一度に飛べます。
-    「ここから本題」「この手順が大事」といった覚え書きを、動画の中に残しておけます。
-    長い動画でも、見たいところを探し直さずに開けます。
-  </p>
-
-  <h3>いろいろなサイトの動画をまとめられる</h3>
-  <ul>
-    <li><strong>YouTube・Vimeo</strong> — アプリの中で再生でき、場面の印も付けられます</li>
-    <li><strong>そのほかのサイト</strong> — 題名・サイト名・見出し画像が自動で入ります。再生はブラウザで開きます</li>
-  </ul>
-
-  <h3>Mac・iPhone・iPad で同じ棚が開く</h3>
-  <p>
-    ご自身の iCloud を通して、3つの機器で同じ内容になります。
-    一度お買い上げいただければ、すべての機器でお使いいただけます。
-  </p>
-
-  <h3>そのほか</h3>
-  <ul>
-    <li>タグで横断的に絞り込む</li>
-    <li>続きから再生する（前に見ていた位置を覚えます）</li>
-    <li>見終わった印を付ける</li>
-    <li>題名・チャンネル名・タグで探す（どのフォルダにあるかも表示します）</li>
-    <li>再生リストをフォルダとして丸ごと取り込む</li>
-    <li>フォルダの中身をファイルに書き出して、同じアプリを使っている方に渡す</li>
-    <li>消したものは30日間ゴミ箱に残り、戻せます</li>
-  </ul>
-
-  <h2>よくあるご質問</h2>
-
-  <dl class="faq">
-    <dt>動画そのものは保存されますか？</dt>
-    <dd>
-      いいえ。保存するのは動画への「リンク」だけです。端末の容量をほとんど使いません。
-      アプリの中で再生するときは、YouTube と Vimeo が提供している公式の埋め込みプレイヤーを
-      そのまま表示しています。広告も、そのサービスが出すとおりに表示されます。
-    </dd>
-
-    <dt>動画をダウンロードできますか？</dt>
-    <dd>
-      できません。動画の提供元の規約を守るため、ダウンロード機能は設けていません。
-    </dd>
-
-    <dt>iPhone で見つけた動画を、その場で保存できますか？</dt>
-    <dd>
-      できます。動画の共有ボタンから「チャプたんブックマーク」を選んでください。
-      一覧に出てこないときは、アプリを一度開いてからお試しください。
-      それでも出ないときは、共有の一覧を右端までスクロールし、「その他」から表示を有効にしてください。
-    </dd>
-
-    <dt>Mac ではどうやって追加しますか？</dt>
-    <dd>
-      ブラウザのアドレスバーからリンクをつまんで、画面左下の枠に落としてください。
-      URL をコピーして ⌘V でも追加できます。
-      あらかじめフォルダを選んでおくと、その中に入ります。
-    </dd>
-
-    <dt>他の機器に反映されません</dt>
-    <dd>
-      iCloud を通して同期しています。反映まで数分かかることがあります。
-      画面の左下に、最後に同期できた日時が出ますのでご確認ください。
-      初めてお使いになるときは、Apple 側の準備に時間がかかり、しばらく同期されないことがあります。
-    </dd>
-
-    <dt>動画が再生できなくなりました</dt>
-    <dd>
-      提供元で削除されたか、非公開に変更された可能性があります。
-      設定メニューの「見られなくなった動画を調べる」で、まとめて確認できます。
-    </dd>
-
-    <dt>保存した内容の控えは取れますか？</dt>
-    <dd>
-      取れます。設定メニューの「すべてを控える（自分用）」でファイルに書き出せます。
-      「控えから戻す」で元に戻せます。
-    </dd>
-
-    <dt>整理した内容を人に渡せますか？</dt>
-    <dd>
-      渡せます。フォルダを右クリック（iPhone・iPad では長押し）して「リストを保存」を選ぶと、
-      その中身をフォルダの形のままファイルに書き出せます。場面の印も一緒に渡ります。
-      <br>
-      <span class="note">
-        見終わった印や再生位置は書き出されません。ご自身の記録が相手に渡ることはありません。
-      </span>
-    </dd>
-  </dl>
-
-  <h2>お問い合わせ</h2>
-  <p>
-    ご不明な点、ご要望、不具合のご報告は、こちらへお願いいたします。
-  </p>
-  <div class="card">
-    <p style="margin:0">
-      <a href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a>
-    </p>
+  <div class="grid" style="margin-top:40px;">
+    <div class="card"><span class="ic" aria-hidden="true">🚩</span><h3>動画の中の場面に印</h3><p>再生中に旗のボタンを押すと、その場面に名前を付けて残せます。目次から選べば、その時間まで一度に飛べます。長い動画でも、見たいところを探し直さずに開けます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🌐</span><h3>いろいろなサイトの動画を</h3><p>YouTube・Vimeo はアプリの中で再生でき、場面の印も付けられます。そのほかのサイトは、題名・サイト名・見出し画像が自動で入り、ブラウザで開きます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🎞️</span><h3>手元の動画ファイルも<span class="tag">1.1 から</span></h3><p>mp4 などの動画ファイルも入れられます。場面の印や続きからの再生も同じように使えます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">☁️</span><h3>Mac・iPhone・iPad で同じ棚</h3><p>ご自身の iCloud を通して、3つの機器で同じ内容になります。一度お買い上げいただければ、すべての機器で使えます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🏷️</span><h3>タグと検索</h3><p>タグで横断的に絞り込み。題名・チャンネル名・タグで探すと、どのフォルダにあるかも出ます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">⏯️</span><h3>続きから・見終わった印</h3><p>前に見ていた位置を覚えて、続きから再生。見終わった動画には印を付けられます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">📥</span><h3>再生リストを丸ごと</h3><p>再生リストをフォルダとして丸ごと取り込めます。フォルダの中身をファイルに書き出して、同じアプリを使っている方に渡すこともできます。</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🗑️</span><h3>消しても30日は戻せる</h3><p>消したものは30日間ゴミ箱に残り、戻せます。すべてを控えに書き出しておくこともできます。</p></div>
   </div>
-  <p class="note">
-    不具合のご報告の際は、お使いの機器（Mac / iPhone / iPad）と、
-    どの操作をされたときに起きたかをお書き添えいただけると助かります。
-  </p>
+</div></section>
+
+<section class="block" id="screens"><div class="wrap">
+  <span class="eyebrow">SCREENS</span>
+  <h2>画面</h2>
+  <p class="intro">横にすべらせると、ほかの画面も見られます。</p>
+  <p class="gallery-label">Mac</p>
+  <div class="gallery">
+    <figure><img src="img/mac-01.jpg" alt="" width="1600" height="1000" loading="lazy"><figcaption>フォルダの入れ子と、アプリの中での再生</figcaption></figure>
+    <figure><img src="img/mac-02.jpg" alt="" width="1600" height="1000" loading="lazy"><figcaption>動画の中の場面に付けた印（目次）</figcaption></figure>
+    <figure><img src="img/mac-03.jpg" alt="" width="1600" height="1000" loading="lazy"><figcaption>題名・チャンネル名・タグで探す</figcaption></figure>
+  </div>
+  <p class="gallery-label">iPhone</p>
+  <div class="gallery phone">
+    <figure><img src="img/iphone-01.jpg" alt="" width="552" height="1200" loading="lazy"><figcaption>フォルダの一覧</figcaption></figure>
+    <figure><img src="img/iphone-02.jpg" alt="" width="552" height="1200" loading="lazy"><figcaption>再生</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="block alt" id="faq"><div class="wrap">
+  <span class="eyebrow">FAQ</span>
+  <h2>よくある質問</h2>
+  <div class="faq">
+    <details><summary>動画そのものは保存されますか？</summary><div class="a"><p>いいえ。保存するのは動画への「リンク」だけです。端末の容量をほとんど使いません。アプリの中で再生するときは、YouTube と Vimeo が提供している公式の埋め込みプレイヤーをそのまま表示しています。広告も、そのサービスが出すとおりに表示されます。</p></div></details>
+    <details><summary>動画をダウンロードできますか？</summary><div class="a"><p>できません。動画の提供元の規約を守るため、ダウンロード機能は設けていません。</p></div></details>
+    <details><summary>iPhone で見つけた動画を、その場で保存できますか？</summary><div class="a"><p>できます。動画の共有ボタンから「チャプたんブックマーク」を選んでください。一覧に出てこないときは、アプリを一度開いてからお試しください。それでも出ないときは、共有の一覧を右端までスクロールし、「その他」から表示を有効にしてください。</p></div></details>
+    <details><summary>Mac ではどうやって追加しますか？</summary><div class="a"><p>ブラウザのアドレスバーからリンクをつまんで、画面左下の枠に落としてください。URL をコピーして ⌘V でも追加できます。あらかじめフォルダを選んでおくと、その中に入ります。</p></div></details>
+    <details><summary>手元の動画ファイルも入れられますか？</summary><div class="a"><p>入れられます（1.1 から）。ツールバーのフィルムのボタンから、mp4 などの動画ファイルを選んでください。場面の印や、続きからの再生も同じように使えます。動画ファイルそのものは iCloud で同期しないので、そのファイルが無い機器では一覧に出ません。</p></div></details>
+    <details><summary>他の機器に反映されません</summary><div class="a"><p>iCloud を通して同期しています。反映まで数分かかることがあります。画面の左下に、最後に同期できた日時が出ますのでご確認ください。初めてお使いになるときは、Apple 側の準備に時間がかかり、しばらく同期されないことがあります。</p></div></details>
+    <details><summary>動画が再生できなくなりました</summary><div class="a"><p>提供元で削除されたか、非公開に変更された可能性があります。設定メニューの「見られなくなった動画を調べる」で、まとめて確認できます。</p></div></details>
+    <details><summary>保存した内容の控えは取れますか？</summary><div class="a"><p>取れます。設定メニューの「すべてを控える（自分用）」でファイルに書き出せます。「控えから戻す」で元に戻せます。</p></div></details>
+    <details><summary>整理した内容を人に渡せますか？</summary><div class="a"><p>渡せます。フォルダを右クリック（iPhone・iPad では長押し）して「リストを保存」を選ぶと、その中身をフォルダの形のままファイルに書き出せます。場面の印も一緒に渡ります。<br><span class="note">見終わった印や再生位置は書き出されません。ご自身の記録が相手に渡ることはありません。</span></p></div></details>
+  </div>
+</div></section>
+
+<section class="block" id="contact"><div class="wrap contact">
+  <span class="eyebrow">CONTACT</span>
+  <h2>お問い合わせ</h2>
+  <div class="card">
+    <p>ご不明な点、ご要望、不具合のご報告は、メールでお気軽にどうぞ。</p>
+    <p><a class="btn ghost" href="mailto:emc.hs07@gmail.com">emc.hs07@gmail.com</a></p>
+    <p style="font-size:.9rem;color:var(--mute);margin:14px 0 0;">くわしくは <a href="privacy.html">プライバシーポリシー</a> をご覧ください。</p>
+  </div>
+</div></section>
+</main>
 
 <!-- この作者のほかのアプリ（ここから） -->
 <section class="other-apps" style="margin-top:3rem;">
@@ -259,18 +254,6 @@
 </ul>
 </section>
 <!-- この作者のほかのアプリ（ここまで） -->
-  <footer>
-    <p>
-      <a href="privacy.html">プライバシーポリシー</a>
-    </p>
-    <p>&copy; 2026 Hideki Sato</p>
-    <p class="note">
-      YouTube および Vimeo は、それぞれの権利者の商標です。本アプリは、
-      これらのサービスが提供する公式の埋め込みプレイヤーを表示しています。
-      本アプリは、これらのサービスの提供元とは関係がありません。
-    </p>
-  </footer>
-
-</div>
+<footer>© 2026 Hideki Sato — チャプたんブックマーク</footer>
 </body>
 </html>
